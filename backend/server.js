@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import { httpLogger } from './src/utils/logger.js';
 import xss from 'xss-clean';
 import { connectDB } from './src/config/db.js';
 import { notFoundHandler, errorHandler } from './src/middleware/errorHandler.js';
@@ -18,11 +19,15 @@ const app = express();
 // Security & utils
 app.use(helmet());
 
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  credentials: true
+}));
 
 app.use(express.json());
 app.use(xss());
 app.use(morgan('dev'));
+app.use(httpLogger);
 
 // API version base
 const API_BASE = '/api/v1';

@@ -29,7 +29,7 @@ function Site(){
   return (
     <>
       <div className="navbar">
-        <div className="brand">Pramitrade</div>
+        <div className="brand">Task Manager</div>
         <div className="navlinks">
           <Link className="link" to="/">Home</Link>
           {!token && <Link className="link" to="/login">Login</Link>}
